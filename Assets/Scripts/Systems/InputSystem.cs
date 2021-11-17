@@ -18,7 +18,6 @@ namespace Client
             {
                 _gameState.State = State.Game;
             }
-
             if (Input.GetMouseButtonDown(0) && _gameState.State == State.Game)
             {
                 var mousePosition = _sceneData.Camera.ScreenToWorldPoint(Input.mousePosition);
@@ -34,28 +33,17 @@ namespace Client
                         entity = entityRef.TryGetEntity().Value;
                         var ballComponent = entity.Get<BallComponent>();
                         ballColor = ballComponent.Color;
-                        position = go.transform.position;
-                        
+                        position = go.transform.position;                      
                         _sceneData.ExplosionInstantiate(position, ballColor);
-
                         entity.Get<ClearEvent>();
-
                         _gameState.ScoreCount = ballComponent.Score + _gameState.ScoreCount;
                     }
-
-
-
-
                 }
             }
-
             if (Input.GetMouseButtonDown(0) && _gameState.State == State.End)
             {
                 SceneManager.LoadScene(SceneManager.GetActiveScene().name);
             }
-
         }
-
-
     }
 }

@@ -12,7 +12,6 @@ namespace Client
         public void Run()
         {
             var camera = _sceneData.Camera;
-
             foreach (var item in _ball)
             {
                 ref var ball = ref _ball.Get1(item);
@@ -21,18 +20,14 @@ namespace Client
                 var point = Vector2.zero;
 
                 point = camera.WorldToViewportPoint(ball.Transform.position);
-
                 if (point.y < 0f)
                 {
                     EcsEntity TakeDamage = _world.NewEntity();
-                    ref var takeDamage = ref TakeDamage.Get<Damage>();
+                    ref var takeDamage = ref TakeDamage.Get<DamageComponent>();
                     takeDamage.DamageValue = DamageValue;
-
                     Entity.Get<ClearEvent>();
                 }
             }
-
         }
-
     }
 }

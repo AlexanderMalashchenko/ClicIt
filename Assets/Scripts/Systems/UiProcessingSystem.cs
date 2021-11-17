@@ -28,7 +28,7 @@ namespace Client
 
         readonly EcsFilter<EcsUiClickEvent> _clickEvents = null;
 
-        readonly EcsFilter<Damage> _takeDamage = null;
+        readonly EcsFilter<DamageComponent> _takeDamage = null;
 
         private Configuration _configuration = null;
         public Dictionary<State, Canvas> screens = new Dictionary<State, Canvas>();

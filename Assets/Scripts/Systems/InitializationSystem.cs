@@ -9,7 +9,7 @@ namespace Client
         public void Init()
         {
             var TimerEntity = _world.NewEntity();
-            var timer = TimerEntity.Get<Timer>();
+            var timer = TimerEntity.Get<TimerComponent>();
             _configuration.BallSpeedModifier = 1f;
             timer.TimeIncrease = _configuration.TimeIncrease;
         }

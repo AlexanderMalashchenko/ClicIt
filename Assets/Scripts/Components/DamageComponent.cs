@@ -1,5 +1,5 @@
 namespace Client {
-    struct Damage {
+    struct DamageComponent {
         public int DamageValue;
     }
 }

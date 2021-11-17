@@ -12,13 +12,11 @@ namespace Client
             if (!_filter.IsEmpty())
             {
                 int BestScore = 0;
-
                 if (PlayerPrefs.HasKey("ScoreCount"))
                 {
                     BestScore = PlayerPrefs.GetInt("ScoreCount");
                     _gameState.BestScoreCount = BestScore;
                 }
-
 
                 if (BestScore < _gameState.ScoreCount)
                 {
@@ -26,10 +24,7 @@ namespace Client
                     PlayerPrefs.Save();
                     _gameState.BestScoreCount = _gameState.ScoreCount;
                 }
-
-
                 _gameState.State = State.End;
-
             }
         }
     }

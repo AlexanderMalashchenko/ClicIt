@@ -14,7 +14,6 @@ namespace Client
             {
                 ref var ball = ref _ball.Get1(item);
                 var Entity = _ball.GetEntity(item);
-
                 ball.Transform.position = _configuration.StartPoint;
                 _pool.ReturnToPool(ball.Transform.gameObject);
                 Entity.Get<NewBallFlag>();

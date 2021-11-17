@@ -17,28 +17,21 @@ namespace Client
         EcsSystems _fixedUpdateSystems;
         GameState _gameState;
 
-
-
         void Start()
         {
             _world = new EcsWorld();
             EcsPhysicsEvents.ecsWorld = _world;
-
 #if UNITY_EDITOR
             Leopotam.Ecs.UnityIntegration.EcsWorldObserver.Create(_world);
 #endif
             _updateSystems = new EcsSystems(_world);
-            _fixedUpdateSystems = new EcsSystems(_world);
             _gameState = new GameState();
             _updateSystems
-
                         .Add(new InitializationSystem())
-
                         .Add(new SpawnGoSystem())
                         .ConvertScene()
                         .Add(new SpawnEnSystem())
                         .Add(new RandomBallSystem())
-
                         .Add(new MoveBallSystem())
                         .Add(new SpeedIncreaseSystem())
                         .Add(new InputSystem())
@@ -46,18 +39,11 @@ namespace Client
                         .Add(new UiProcessingSystem())
                         .Add(new ClearSystem())
                         .Add(new EndGameSystem())
-                         .OneFrame<Damage>()
+                         .OneFrame<DamageComponent>()
                          .OneFrame<EndGameEvent>()
                          .OneFrame<ClearEvent>();
-
-
-
             AddInjections(_updateSystems);
-            _updateSystems.ProcessInjects();
-
             _updateSystems.Init();
-
-
             _gameState.State = State.Start;
 
 #if UNITY_EDITOR
