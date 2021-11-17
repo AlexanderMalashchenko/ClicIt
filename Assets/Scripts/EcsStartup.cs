@@ -18,6 +18,7 @@ namespace Client
         GameState _gameState;
 
 
+
         void Start()
         {
             _world = new EcsWorld();
@@ -30,11 +31,14 @@ namespace Client
             _fixedUpdateSystems = new EcsSystems(_world);
             _gameState = new GameState();
             _updateSystems
+
                         .Add(new InitializationSystem())
+
                         .Add(new SpawnGoSystem())
                         .ConvertScene()
                         .Add(new SpawnEnSystem())
                         .Add(new RandomBallSystem())
+
                         .Add(new MoveBallSystem())
                         .Add(new SpeedIncreaseSystem())
                         .Add(new InputSystem())

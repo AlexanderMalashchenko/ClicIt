@@ -7,19 +7,19 @@ namespace Client
     public class SpawnEnSystem : IEcsRunSystem
     {
 
-        private EcsFilter<EntityInit> _ballInit = null;
+        private EcsFilter<BallComponent, NewBallFlag, OffFlag> _ball = null;
 
         public void Run()
         {
-            foreach (var item in _ballInit)
+            foreach (var item in _ball)
             {
-                ref var ball = ref _ballInit.Get1(item);
-                var entityRefComponent = ball.Ball.GetComponent<EntityRef>();
-                var entity = entityRefComponent.Entity;
-                entity.Del<OffFlag>();
-                ref var entityBallInit = ref _ballInit.GetEntity(item);
-                entityBallInit.Del<EntityInit>();
+                var entity = _ball.GetEntity(item);
+                var ballTransform = entity.Get<BallComponent>();
+                if (ballTransform.Transform.gameObject.activeSelf)
+                    entity.Del<OffFlag>();
             }
+   
         }
     }
 }
+

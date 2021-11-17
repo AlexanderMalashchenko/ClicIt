@@ -1,6 +1,7 @@
 using Leopotam.Ecs;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Voody.UniLeo;
 
 namespace Client
 {
@@ -8,7 +9,9 @@ namespace Client
     {
         private SceneData _sceneData = null;
         private GameState _gameState = null;
-
+        EcsEntity entity = default;
+        Vector3 position = default;
+        Color ballColor = default;
         public void Run()
         {
             if (Input.GetMouseButtonDown(0) && _gameState.State == State.Start)
@@ -24,23 +27,25 @@ namespace Client
                 if (hit.collider != null)
                 {
                     var go = hit.collider.gameObject;
+                    var entityRef = go.GetComponent<ConvertToEntity>();
 
-                    var entityRef = go.GetComponent<EntityRef>();
-                    var entity = entityRef.Entity;
+                    if (entityRef.TryGetEntity().HasValue)
+                    {
+                        entity = entityRef.TryGetEntity().Value;
+                        var ballComponent = entity.Get<BallComponent>();
+                        ballColor = ballComponent.Color;
+                        position = go.transform.position;
+                        
+                        _sceneData.ExplosionInstantiate(position, ballColor);
+
+                        entity.Get<ClearEvent>();
+
+                        _gameState.ScoreCount = ballComponent.Score + _gameState.ScoreCount;
+                    }
 
 
-                    var ballComponent = entity.Get<BallComponent>();
-                    Color ballColor = ballComponent.Color;
-                    Vector3 position = go.transform.position;
-
-                    _sceneData.ExplosionInstantiate(position, ballColor);
 
 
-                    entity.Get<ClearEvent>();
-                   
-                    _gameState.ScoreCount = ballComponent.Score + _gameState.ScoreCount;
-
-                    
                 }
             }
 

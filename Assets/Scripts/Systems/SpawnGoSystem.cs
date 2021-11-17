@@ -11,7 +11,7 @@ namespace Client
         private SceneData _sceneData = null;
         private Configuration _configuration = null;
         float Timer = -1f;
-        readonly EcsWorld _world = null;
+
         public void Run()
         {
             var startPoint = _configuration.StartPoint;
@@ -26,11 +26,9 @@ namespace Client
                     var ball = _pool.Get(_sceneData.BallPrefab);
                     ball.transform.position = startPoint;
                     ball.SetActive(true);
-                    var EntityInit = _world.NewEntity();
-                    ref var entityInitComponent = ref  EntityInit.Get<EntityInit>();
-                    entityInitComponent.Ball = ball;
                     Timer = _configuration.SpawnTime;
                 }
+
             }
         }
     }
