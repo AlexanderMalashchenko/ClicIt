@@ -36,6 +36,7 @@ namespace Client
                         .Add(new SpeedIncreaseSystem())
                         .Add(new InputSystem())
                         .Add(new BoundSystem())
+                        .Add(new DamageSystem())
                         .Add(new UiProcessingSystem())
                         .Add(new ClearSystem())
                         .Add(new EndGameSystem())

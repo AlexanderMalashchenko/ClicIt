@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using Leopotam.Ecs.Ui.Components;
+using LocalIdents;
 
 namespace Client
 {
@@ -14,32 +15,23 @@ namespace Client
     {
         private GameState _gameState = null;
         EcsWorld _world = null;
-        [EcsUiNamed("Start")] Canvas _startCanvas;
-        [EcsUiNamed("InGame")] Canvas _inGameCanvas;
-        [EcsUiNamed("InGameCount")] TMP_Text _inGameCoinsCounter;
-        [EcsUiNamed("Image")] Image _inGameCoinImage;
-        [EcsUiNamed("HealthImage")] Image _healthBar;
-        [EcsUiNamed("Health")] TMP_Text _health;
-        [EcsUiNamed("InMenu")] Canvas _inMenuCanvas;
-        [EcsUiNamed("EndGame")] Canvas _endGameCanvas;
-        [EcsUiNamed("EndGameCount")] TMP_Text _endGameCountCounter;
-        [EcsUiNamed("SpaceStartBlink")] CanvasGroup _spaceStartBlink;
-        [EcsUiNamed("SpaceEndBlink")] CanvasGroup _spaceEndBlink;
-
+        [EcsUiNamed(Ui.Start)] Canvas _startCanvas;
+        [EcsUiNamed(Ui.InGame)] Canvas _inGameCanvas;
+        [EcsUiNamed(Ui.InGameCount)] TMP_Text _inGameCoinsCounter;
+        [EcsUiNamed(Ui.InGameImage)] Image _inGameCoinImage;
+        [EcsUiNamed(Ui.HealthBar)] Image _healthBar;
+        [EcsUiNamed(Ui.Health)] TMP_Text _health;
+        [EcsUiNamed(Ui.InMenu)] Canvas _inMenuCanvas;
+        [EcsUiNamed(Ui.EndGame)] Canvas _endGameCanvas;
+        [EcsUiNamed(Ui.EndGameCount)] TMP_Text _endGameCountCounter;
+        [EcsUiNamed(Ui.TapStartBlink)] CanvasGroup _spaceStartBlink;
+        [EcsUiNamed(Ui.TapEndBlink)] CanvasGroup _spaceEndBlink;
         readonly EcsFilter<EcsUiClickEvent> _clickEvents = null;
-
-        readonly EcsFilter<DamageComponent> _takeDamage = null;
-
-        private Configuration _configuration = null;
         public Dictionary<State, Canvas> screens = new Dictionary<State, Canvas>();
-
-
-        private float _playerHealth;
         public void Init()
         {
             _spaceStartBlink.DOFade(0, .5f).SetLoops(-1, LoopType.Yoyo);
             _spaceEndBlink.DOFade(0, .5f).SetLoops(-1, LoopType.Yoyo);
-
             screens = new Dictionary<State, Canvas>()
             {
                 {State.Start, _startCanvas },
@@ -51,9 +43,6 @@ namespace Client
             GameState.OnScoreChange += OnScoreChangeInGame;
             GameState.OnBestScoreChange += OnScoreChangeEndGame;
             _inGameCoinsCounter.text = $"Score: 0";
-
-            _playerHealth = _configuration.PlayerHealth;
-
         }
         public void Run()
         {
@@ -61,36 +50,25 @@ namespace Client
             {
                 ref EcsUiClickEvent data = ref _clickEvents.Get1(idx);
 
-
-                if (data.WidgetName == "Menu") { _gameState.State = State.Menu; UnityEngine.Time.timeScale = 0; }
-                if (data.WidgetName == "Yes")
+                switch (data.WidgetName)
                 {
-                    EcsEntity EndGame = _world.NewEntity();
-                    EndGame.Get<EndGameEvent>();
+                    case Ui.ButtonMenu:
+                        _gameState.State = State.Menu;
+                        UnityEngine.Time.timeScale = 0;
+                        break;
+                    case Ui.ButtonYes:
+                        EcsEntity EndGame = _world.NewEntity();
+                        EndGame.Get<EndGameEvent>();
+                        UnityEngine.Time.timeScale = 1;
+                        break;
+                    case Ui.ButtonNo:
+                        _gameState.State = State.Game;
+                        UnityEngine.Time.timeScale = 1;
+                        break;
                 }
-                if (data.WidgetName == "No") { _gameState.State = State.Game; UnityEngine.Time.timeScale = 1; }
             }
-
-            foreach (var idx in _takeDamage)
-            {
-
-                var DamageEntity = _takeDamage.GetEntity(idx);
-                ref var damageValue = ref _takeDamage.Get1(idx);
-                _playerHealth -= damageValue.DamageValue;
-                _health.text = $"{_playerHealth}";
-                _healthBar.fillAmount = Mathf.Clamp(_playerHealth / _configuration.PlayerHealth, 0, 1f);
-
-                if (_playerHealth <= 0)
-                {
-                    var EndGame = _world.NewEntity();
-                    EndGame.Get<EndGameEvent>();
-                }
-
-            }
-
 
         }
-
         public void OnGameStateChange(State state)
         {
             foreach (KeyValuePair<State, Canvas> screen in screens)
@@ -107,14 +85,10 @@ namespace Client
             _inGameCoinImage.rectTransform.DOPunchScale(Vector3.one * .4f, .1f, 2);
             _inGameCoinImage.rectTransform.localScale = Vector3.ClampMagnitude(_inGameCoinImage.rectTransform.localScale, 1.5f);
         }
-
         private void OnScoreChangeEndGame(int score)
         {
-
             _endGameCountCounter.text = $"Best score: {score}";
-
         }
-
         public void Destroy()
         {
             GameState.OnGameStateChange -= OnGameStateChange;
@@ -123,6 +97,4 @@ namespace Client
             DOTween.KillAll();
         }
     }
-
 }
-

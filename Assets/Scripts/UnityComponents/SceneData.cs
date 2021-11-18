@@ -7,6 +7,7 @@ public class SceneData : MonoBehaviour
     public GameObject BallPrefab;
     public Camera Camera;
     public ParticleSystem Explosion;
+    public float CurrentHealth;
 
     public void ExplosionInstantiate(Vector3 position, Color color)
     {

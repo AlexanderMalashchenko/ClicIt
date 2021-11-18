@@ -13,7 +13,7 @@ public class Configuration : ScriptableObject
 
  public Vector3 StartPoint;
 
- public float PlayerHealth;
+ public float PlayerMaxHealth;
 
  public float TimeIncrease;
 
