@@ -3,12 +3,12 @@ using UnityEngine;
 
 namespace Client
 {
-
     public class BoundSystem : IEcsRunSystem
     {
         EcsWorld _world = null;
         private EcsFilter<BallComponent>.Exclude<NewBallFlag, OffFlag> _ball = null;
         private SceneData _sceneData = null;
+
         public void Run()
         {
             var camera = _sceneData.Camera;

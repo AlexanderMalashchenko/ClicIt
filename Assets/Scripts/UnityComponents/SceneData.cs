@@ -8,16 +8,4 @@ public class SceneData : MonoBehaviour
     public Camera Camera;
     public ParticleSystem Explosion;
     public float CurrentHealth;
-
-    public void ExplosionInstantiate(Vector3 position, Color color)
-    {
-
-        var Expl = Instantiate(Explosion, position, Quaternion.identity);
-      
-        ParticleSystem.MainModule main = Expl.main;
-        main.startColor = color;
-
-    }
-
-
 }

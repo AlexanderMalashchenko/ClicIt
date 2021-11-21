@@ -1,12 +1,13 @@
 using Leopotam.Ecs;
 using UnityEngine;
+
 namespace Client
 {
     public class EndGameSystem : IEcsRunSystem
     {
-
         private GameState _gameState = null;
         private EcsFilter<EndGameEvent> _filter = null;
+
         public void Run()
         {
             if (!_filter.IsEmpty())
@@ -24,6 +25,7 @@ namespace Client
                     PlayerPrefs.Save();
                     _gameState.BestScoreCount = _gameState.ScoreCount;
                 }
+
                 _gameState.State = State.End;
             }
         }

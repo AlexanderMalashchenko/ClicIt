@@ -28,22 +28,24 @@ namespace Client
         [EcsUiNamed(Ui.TapEndBlink)] CanvasGroup _spaceEndBlink;
         readonly EcsFilter<EcsUiClickEvent> _clickEvents = null;
         public Dictionary<State, Canvas> screens = new Dictionary<State, Canvas>();
+
         public void Init()
         {
             _spaceStartBlink.DOFade(0, .5f).SetLoops(-1, LoopType.Yoyo);
             _spaceEndBlink.DOFade(0, .5f).SetLoops(-1, LoopType.Yoyo);
             screens = new Dictionary<State, Canvas>()
             {
-                {State.Start, _startCanvas },
-                {State.Game, _inGameCanvas },
-                {State.Menu, _inMenuCanvas },
+                {State.Start, _startCanvas},
+                {State.Game, _inGameCanvas},
+                {State.Menu, _inMenuCanvas},
                 {State.End, _endGameCanvas}
-           };
+            };
             GameState.OnGameStateChange += OnGameStateChange;
             GameState.OnScoreChange += OnScoreChangeInGame;
             GameState.OnBestScoreChange += OnScoreChangeEndGame;
             _inGameCoinsCounter.text = $"Score: 0";
         }
+
         public void Run()
         {
             foreach (var idx in _clickEvents)
@@ -67,8 +69,8 @@ namespace Client
                         break;
                 }
             }
-
         }
+
         public void OnGameStateChange(State state)
         {
             foreach (KeyValuePair<State, Canvas> screen in screens)
@@ -79,16 +81,20 @@ namespace Client
                     screen.Value.enabled = true;
             }
         }
+
         private void OnScoreChangeInGame(int coins)
         {
             _inGameCoinsCounter.text = $"Score: {coins}";
             _inGameCoinImage.rectTransform.DOPunchScale(Vector3.one * .4f, .1f, 2);
-            _inGameCoinImage.rectTransform.localScale = Vector3.ClampMagnitude(_inGameCoinImage.rectTransform.localScale, 1.5f);
+            _inGameCoinImage.rectTransform.localScale =
+                Vector3.ClampMagnitude(_inGameCoinImage.rectTransform.localScale, 1.5f);
         }
+
         private void OnScoreChangeEndGame(int score)
         {
             _endGameCountCounter.text = $"Best score: {score}";
         }
+
         public void Destroy()
         {
             GameState.OnGameStateChange -= OnGameStateChange;

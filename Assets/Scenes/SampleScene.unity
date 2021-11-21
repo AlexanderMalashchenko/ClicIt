@@ -483,7 +483,7 @@ GameObject:
   - component: {fileID: 285344047}
   - component: {fileID: 285344046}
   m_Layer: 5
-  m_Name: PressSpaceEnd
+  m_Name: PressTapEnd
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -521,7 +521,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08d7ded42b0c34445aa306cfd205344a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WidgetName: SpaceEndBlink
+  WidgetName: TapEndBlink
   Emitter: {fileID: 0}
   _nameRegistrationType: 1
   _selectable: {fileID: 0}
@@ -1371,6 +1371,7 @@ MonoBehaviour:
   BallPrefab: {fileID: 1651219928145619262, guid: 84311c658be6b5b41bd683d029951028, type: 3}
   Camera: {fileID: 519420031}
   Explosion: {fileID: 8738040208657978815, guid: d0399ba492848364d8e4abd617404359, type: 3}
+  CurrentHealth: 0
 --- !u!4 &732359836
 Transform:
   m_ObjectHideFlags: 0
@@ -3011,7 +3012,7 @@ GameObject:
   - component: {fileID: 1870012819}
   - component: {fileID: 1870012818}
   m_Layer: 5
-  m_Name: PressSpaceStart
+  m_Name: TapStartStart
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3049,7 +3050,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08d7ded42b0c34445aa306cfd205344a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WidgetName: SpaceStartBlink
+  WidgetName: TapStartBlink
   Emitter: {fileID: 0}
   _nameRegistrationType: 1
   _selectable: {fileID: 0}

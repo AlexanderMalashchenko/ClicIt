@@ -28,7 +28,6 @@ namespace Client
                     ball.SetActive(true);
                     Timer = _configuration.SpawnTime;
                 }
-
             }
         }
     }

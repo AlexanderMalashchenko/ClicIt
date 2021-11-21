@@ -7,6 +7,7 @@ namespace Client
     public class SpawnEnSystem : IEcsRunSystem
     {
         private EcsFilter<BallComponent, NewBallFlag, OffFlag> _ball = null;
+
         public void Run()
         {
             foreach (var item in _ball)
@@ -15,8 +16,7 @@ namespace Client
                 var ballTransform = entity.Get<BallComponent>();
                 if (ballTransform.Transform.gameObject.activeSelf)
                     entity.Del<OffFlag>();
-            }  
+            }
         }
     }
 }
-

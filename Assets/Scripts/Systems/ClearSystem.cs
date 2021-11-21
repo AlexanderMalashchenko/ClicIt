@@ -7,9 +7,9 @@ namespace Client
         private EcsFilter<BallComponent, ClearEvent> _ball = null;
         private ObjectPool _pool = null;
         private Configuration _configuration = null;
+
         public void Run()
         {
-
             foreach (var item in _ball)
             {
                 ref var ball = ref _ball.Get1(item);

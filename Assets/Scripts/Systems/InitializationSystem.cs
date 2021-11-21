@@ -7,6 +7,7 @@ namespace Client
         readonly EcsWorld _world = null;
         private Configuration _configuration = null;
         private SceneData _sceneData = null;
+
         public void Init()
         {
             _configuration.PlayerMaxHealth = 100f;

@@ -1,12 +1,13 @@
 using Leopotam.Ecs;
 using UnityEngine;
+
 namespace Client
 {
     internal class SpeedIncreaseSystem : IEcsRunSystem
     {
-
         private EcsFilter<TimerComponent> _timer = null;
         private Configuration _config = null;
+
         public void Run()
         {
             foreach (var item in _timer)

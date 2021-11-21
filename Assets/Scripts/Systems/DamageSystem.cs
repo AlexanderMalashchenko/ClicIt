@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using Leopotam.Ecs.Ui.Components;
+
 namespace Client
 {
     sealed class DamageSystem : IEcsRunSystem
@@ -17,7 +18,7 @@ namespace Client
         readonly EcsFilter<DamageComponent> _takeDamage = null;
         private SceneData _sceneData = null;
         private Configuration _configuration = null;
-        
+
         public void Run()
         {
             ref var _playerHealth = ref _sceneData.CurrentHealth;

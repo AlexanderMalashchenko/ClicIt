@@ -3,6 +3,7 @@ using UnityEngine;
 using Voody.UniLeo;
 using LeoEcsPhysics;
 using Leopotam.Ecs.Ui.Systems;
+
 namespace Client
 {
     sealed class EcsStartup : MonoBehaviour
@@ -27,22 +28,22 @@ namespace Client
             _updateSystems = new EcsSystems(_world);
             _gameState = new GameState();
             _updateSystems
-                        .Add(new InitializationSystem())
-                        .Add(new SpawnGoSystem())
-                        .ConvertScene()
-                        .Add(new SpawnEnSystem())
-                        .Add(new RandomBallSystem())
-                        .Add(new MoveBallSystem())
-                        .Add(new SpeedIncreaseSystem())
-                        .Add(new InputSystem())
-                        .Add(new BoundSystem())
-                        .Add(new DamageSystem())
-                        .Add(new UiProcessingSystem())
-                        .Add(new ClearSystem())
-                        .Add(new EndGameSystem())
-                         .OneFrame<DamageComponent>()
-                         .OneFrame<EndGameEvent>()
-                         .OneFrame<ClearEvent>();
+                .Add(new InitializationSystem())
+                .Add(new SpawnGoSystem())
+                .ConvertScene()
+                .Add(new SpawnEnSystem())
+                .Add(new RandomBallSystem())
+                .Add(new MoveBallSystem())
+                .Add(new SpeedIncreaseSystem())
+                .Add(new InputSystem())
+                .Add(new BoundSystem())
+                .Add(new DamageSystem())
+                .Add(new UiProcessingSystem())
+                .Add(new ClearSystem())
+                .Add(new EndGameSystem())
+                .OneFrame<DamageComponent>()
+                .OneFrame<EndGameEvent>()
+                .OneFrame<ClearEvent>();
             AddInjections(_updateSystems);
             _updateSystems.Init();
             _gameState.State = State.Start;
@@ -55,12 +56,13 @@ namespace Client
         void AddInjections(EcsSystems systems0)
         {
             systems0
-            .Inject(Configuration)
-            .Inject(SceneData)
-            .Inject(_gameState)
-            .Inject(Pool)
-            .InjectUi(_uiEmitter);
+                .Inject(Configuration)
+                .Inject(SceneData)
+                .Inject(_gameState)
+                .Inject(Pool)
+                .InjectUi(_uiEmitter);
         }
+
         void Update()
         {
             _updateSystems?.Run();
@@ -74,6 +76,7 @@ namespace Client
                 _updateSystems.Destroy();
                 _updateSystems = null;
             }
+
             _world.Destroy();
             _world = null;
         }

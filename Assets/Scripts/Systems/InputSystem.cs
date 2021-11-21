@@ -12,12 +12,14 @@ namespace Client
         EcsEntity entity = default;
         Vector3 position = default;
         Color ballColor = default;
+
         public void Run()
         {
             if (Input.GetMouseButtonDown(0) && _gameState.State == State.Start)
             {
                 _gameState.State = State.Game;
             }
+
             if (Input.GetMouseButtonDown(0) && _gameState.State == State.Game)
             {
                 var mousePosition = _sceneData.Camera.ScreenToWorldPoint(Input.mousePosition);
@@ -33,13 +35,19 @@ namespace Client
                         entity = entityRef.TryGetEntity().Value;
                         var ballComponent = entity.Get<BallComponent>();
                         ballColor = ballComponent.Color;
-                        position = go.transform.position;                      
-                        _sceneData.ExplosionInstantiate(position, ballColor);
+                        position = go.transform.position;
+                        //_sceneData.ExplosionInstantiate(position, ballColor);
+                        var Expl = Object.Instantiate(_sceneData.Explosion, position, Quaternion.identity);
+
+                        ParticleSystem.MainModule main = Expl.main;
+                        main.startColor = ballColor;
+
                         entity.Get<ClearEvent>();
                         _gameState.ScoreCount = ballComponent.Score + _gameState.ScoreCount;
                     }
                 }
             }
+
             if (Input.GetMouseButtonDown(0) && _gameState.State == State.End)
             {
                 SceneManager.LoadScene(SceneManager.GetActiveScene().name);
