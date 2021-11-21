@@ -19,33 +19,40 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="336ec13d-72d6-4579-886d-ee8fbbbf6909" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.ClicIt/.idea/contentModel.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.ClicIt/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.ClicIt/.idea/indexLayout.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.ClicIt/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.ClicIt/.idea/projectSettingsUpdater.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.ClicIt/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.ClicIt/riderModule.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/EcsStartup.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/EcsStartup.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Systems/InputSystem.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Systems/InputSystem.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UnityComponents/SceneData.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UnityComponents/SceneData.cs" afterDir="false" />
-    </list>
+    <list default="true" id="336ec13d-72d6-4579-886d-ee8fbbbf6909" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="ChangesViewManager">
+    <option name="groupingKeys">
+      <option value="directory" />
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="mock://C:/Project/ClicIt/Assets/Scenes/SampleScene.unity" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/Assets/Scripts/EcsStartup.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Systems/InputSystem.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/UnityComponents/SceneData.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Systems/InitializationSystem.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Systems/SpawnGoSystem.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Systems/SpawnEnSystem.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Systems/RandomBallSystem.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Systems/MoveBallSystem.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Systems/SpeedIncreaseSystem.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Systems/InputSystem.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Systems/BoundSystem.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Systems/DamageSystem.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Systems/UiProcessingSystem.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Systems/ClearSystem.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Systems/EndGameSystem.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/EcsStartup.cs" />
       </list>
     </option>
   </component>
@@ -88,8 +95,16 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1637516505766</updated>
-      <workItem from="1637516514616" duration="467000" />
+      <workItem from="1637516514616" duration="767000" />
     </task>
+    <task id="LOCAL-00001" summary=".">
+      <created>1637517268792</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1637517268793</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="UnityProjectConfiguration" hasMinimizedUI="true" />
@@ -107,6 +122,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+    <MESSAGE value="." />
+    <option name="LAST_COMMIT_MESSAGE" value="." />
   </component>
   <component name="WindowStateProjectService">
     <state x="461" y="164" key="SettingsEditor" timestamp="1637516837921">
