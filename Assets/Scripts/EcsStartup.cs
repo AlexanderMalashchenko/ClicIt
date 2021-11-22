@@ -6,19 +6,18 @@ using Leopotam.Ecs.Ui.Systems;
 
 namespace Client
 {
-    sealed class EcsStartup : MonoBehaviour
+    internal sealed class EcsStartup : MonoBehaviour
     {
-        [SerializeField] EcsUiEmitter _uiEmitter = null;
+        [SerializeField] private EcsUiEmitter _uiEmitter = null;
         public Configuration Configuration;
         public SceneData SceneData;
         public ObjectPool Pool;
 
-        EcsWorld _world;
-        EcsSystems _updateSystems;
-        EcsSystems _fixedUpdateSystems;
-        GameState _gameState;
+        private EcsWorld _world;
+        private EcsSystems _updateSystems;
+        private GameState _gameState;
 
-        void Start()
+        private void Start()
         {
             _world = new EcsWorld();
             EcsPhysicsEvents.ecsWorld = _world;
@@ -53,7 +52,7 @@ namespace Client
 #endif
         }
 
-        void AddInjections(EcsSystems systems0)
+        private void AddInjections(EcsSystems systems0)
         {
             systems0
                 .Inject(Configuration)
@@ -63,12 +62,12 @@ namespace Client
                 .InjectUi(_uiEmitter);
         }
 
-        void Update()
+        private void Update()
         {
             _updateSystems?.Run();
         }
 
-        void OnDestroy()
+        private void OnDestroy()
         {
             EcsPhysicsEvents.ecsWorld = null;
             if (_updateSystems != null)
