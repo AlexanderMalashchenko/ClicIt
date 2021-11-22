@@ -9,4 +9,4 @@
 8. Выполненные задания принимаются до 10.11.21 включительно. Абсолютно все решения без компиляционных ошибок получат ревью. 
 9. Версия юнити - 2020
 
-https://www.youtube.com/channel/UCCrLQKMtF_FwOeDgTUuOksw/community (Почта - maksym.kriukov@gmail.com)
+https://www.youtube.com/channel/UCCrLQKMtF_FwOeDgTUuOksw/community
